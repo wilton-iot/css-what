@@ -1,3 +1,4 @@
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
 "use strict";
 
 module.exports = parse;
@@ -265,3 +266,5 @@ function addToken(subselects, tokens){
 
 	subselects.push(tokens);
 }
+
+return module.exports;});

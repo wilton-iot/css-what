@@ -1,5 +1,6 @@
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
 var assert = require("assert"),
-    parse = require("../");
+    parse = require("css-what/");
 
 var tests = [
 	//tag names
@@ -409,10 +410,12 @@ tests.forEach(function(arr, i){
 
 console.log("\nCollected selectors (qwery, sizzle, nwmatcher)...");
 
-var out = require("./out.json");
+var out = require("css-what/tests/out.js");
 
 Object.keys(out).forEach(function(s){
 	assert.deepEqual(parse(s), out[s], s);
 });
 
 console.log("Passed!");
+
+return module.exports;});
