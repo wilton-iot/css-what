@@ -40,5 +40,11 @@
       "describe": true,
       "it": true
     }
+  },
+  "wilton": {
+    "excludes": [
+      "tests",
+      "stringify.js"
+    ]
   }
 }
