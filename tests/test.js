@@ -1,6 +1,6 @@
-define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
+define(function(localRequire, exports, module) { var requireOrig = require; require = localRequire;
 var assert = require("assert"),
-    parse = require("css-what/");
+    parse = require("css-what");
 
 var tests = [
 	//tag names
@@ -418,4 +418,4 @@ Object.keys(out).forEach(function(s){
 
 console.log("Passed!");
 
-return module.exports;});
+require = requireOrig;});
