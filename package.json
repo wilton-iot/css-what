@@ -44,7 +44,8 @@
   "wilton": {
     "excludes": [
       "tests",
-      "stringify.js"
+      "stringify.js",
+      "test.js"
     ]
   }
 }
