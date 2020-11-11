@@ -3,10 +3,10 @@ define(function(localRequire, exports, module) { var requireOrig = require; requ
 
 module.exports = parse;
 
-var re_name = /^(?:\\.|[\w\-\u00c0-\uFFFF])+/,
+var re_name = /^(?:\\.|[\w\-\u00b0-\uFFFF])+/,
     re_escape = /\\([\da-f]{1,6}\s?|(\s)|.)/ig,
     //modified version of https://github.com/jquery/sizzle/blob/master/src/sizzle.js#L87
-    re_attr = /^\s*((?:\\.|[\w\u00c0-\uFFFF\-])+)\s*(?:(\S?)=\s*(?:(['"])(.*?)\3|(#?(?:\\.|[\w\u00c0-\uFFFF\-])*)|)|)\s*(i)?\]/;
+    re_attr = /^\s*((?:\\.|[\w\u00b0-\uFFFF\-])+)\s*(?:(\S?)=\s*(?:(['"])([^]*?)\3|(#?(?:\\.|[\w\u00b0-\uFFFF\-])*)|)|)\s*(i)?\]/;
 
 var actionTypes = {
 	__proto__: null,
@@ -103,6 +103,13 @@ function parseSelector(subselects, selector, options){
 	function stripWhitespace(start){
 		while(isWhitespace(selector.charAt(start))) start++;
 		selector = selector.substr(start);
+	}
+
+	function isEscaped(pos) {
+		var slashCount = 0;
+
+		while (selector.charAt(--pos) === "\\") slashCount++;
+		return (slashCount & 1) === 1;
 	}
 
 	stripWhitespace(0);
@@ -212,8 +219,8 @@ function parseSelector(subselects, selector, options){
 						var pos = 1, counter = 1;
 
 						for(; counter > 0 && pos < selector.length; pos++){
-							if(selector.charAt(pos) === "(") counter++;
-							else if(selector.charAt(pos) === ")") counter--;
+							if(selector.charAt(pos) === "(" && !isEscaped(pos)) counter++;
+							else if(selector.charAt(pos) === ")" && !isEscaped(pos)) counter--;
 						}
 
 						if(counter){
