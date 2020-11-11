@@ -15,9 +15,15 @@
  */
 
 define([
-    "./tests/test"
 ], function() {
     "use strict";
 
-    print("test: css-what");
+    if (!("function" === typeof(WILTON_requiresync) &&
+            "rhino" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine)) {
+        // rhino cannot parse out.js
+        require(["css-what/tests/test"], function() {
+            print("test: css-what");
+        });
+    }
+
 });
