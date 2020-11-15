@@ -19,7 +19,8 @@ define([
     "use strict";
 
     if (!("function" === typeof(WILTON_requiresync) &&
-            "rhino" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine)) {
+            "rhino" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine ||
+            "nashorn" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine)) {
         // rhino cannot parse out.js
         require(["css-what/tests/test"], function() {
             print("test: css-what");
