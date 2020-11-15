@@ -15,10 +15,11 @@
  */
 
 define([
-], function() {
+    "is-in-browser"
+], function(isInBrowser) {
     "use strict";
 
-    if (!("function" === typeof(WILTON_requiresync) &&
+    if (isInBrowser || !("function" === typeof(WILTON_requiresync) &&
             "rhino" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine ||
             "nashorn" === WILTON_requiresync("wilton/misc").wiltonConfig().defaultScriptEngine)) {
         // rhino cannot parse out.js
